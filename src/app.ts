@@ -5,6 +5,8 @@ import { env } from './env/index.js'
 
 export const app = express()
 
+app.use(express.json())
+
 app.use((err: Error, _req: Request, res: Response, _next: NextFunction) => {
   if (err instanceof ZodError) {
     return res.status(400).send({
