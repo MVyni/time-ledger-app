@@ -187,7 +187,7 @@ export type WorkEntrieGroupByOutputType = {
   id: string
   date: Date
   duration_minutes: number
-  hourly_rate_at_time: runtime.Decimal | null
+  hourly_rate_at_time: runtime.Decimal
   user_id: string
   _count: WorkEntrieCountAggregateOutputType | null
   _avg: WorkEntrieAvgAggregateOutputType | null
@@ -218,7 +218,7 @@ export type WorkEntrieWhereInput = {
   id?: Prisma.StringFilter<"WorkEntrie"> | string
   date?: Prisma.DateTimeFilter<"WorkEntrie"> | Date | string
   duration_minutes?: Prisma.IntFilter<"WorkEntrie"> | number
-  hourly_rate_at_time?: Prisma.DecimalNullableFilter<"WorkEntrie"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  hourly_rate_at_time?: Prisma.DecimalFilter<"WorkEntrie"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   user_id?: Prisma.StringFilter<"WorkEntrie"> | string
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
 }
@@ -227,7 +227,7 @@ export type WorkEntrieOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   date?: Prisma.SortOrder
   duration_minutes?: Prisma.SortOrder
-  hourly_rate_at_time?: Prisma.SortOrderInput | Prisma.SortOrder
+  hourly_rate_at_time?: Prisma.SortOrder
   user_id?: Prisma.SortOrder
   user?: Prisma.UserOrderByWithRelationInput
 }
@@ -239,7 +239,7 @@ export type WorkEntrieWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.WorkEntrieWhereInput | Prisma.WorkEntrieWhereInput[]
   date?: Prisma.DateTimeFilter<"WorkEntrie"> | Date | string
   duration_minutes?: Prisma.IntFilter<"WorkEntrie"> | number
-  hourly_rate_at_time?: Prisma.DecimalNullableFilter<"WorkEntrie"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  hourly_rate_at_time?: Prisma.DecimalFilter<"WorkEntrie"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   user_id?: Prisma.StringFilter<"WorkEntrie"> | string
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
 }, "id">
@@ -248,7 +248,7 @@ export type WorkEntrieOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   date?: Prisma.SortOrder
   duration_minutes?: Prisma.SortOrder
-  hourly_rate_at_time?: Prisma.SortOrderInput | Prisma.SortOrder
+  hourly_rate_at_time?: Prisma.SortOrder
   user_id?: Prisma.SortOrder
   _count?: Prisma.WorkEntrieCountOrderByAggregateInput
   _avg?: Prisma.WorkEntrieAvgOrderByAggregateInput
@@ -264,7 +264,7 @@ export type WorkEntrieScalarWhereWithAggregatesInput = {
   id?: Prisma.StringWithAggregatesFilter<"WorkEntrie"> | string
   date?: Prisma.DateTimeWithAggregatesFilter<"WorkEntrie"> | Date | string
   duration_minutes?: Prisma.IntWithAggregatesFilter<"WorkEntrie"> | number
-  hourly_rate_at_time?: Prisma.DecimalNullableWithAggregatesFilter<"WorkEntrie"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  hourly_rate_at_time?: Prisma.DecimalWithAggregatesFilter<"WorkEntrie"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   user_id?: Prisma.StringWithAggregatesFilter<"WorkEntrie"> | string
 }
 
@@ -272,7 +272,7 @@ export type WorkEntrieCreateInput = {
   id?: string
   date: Date | string
   duration_minutes: number
-  hourly_rate_at_time?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  hourly_rate_at_time: runtime.Decimal | runtime.DecimalJsLike | number | string
   user: Prisma.UserCreateNestedOneWithoutEntriesInput
 }
 
@@ -280,7 +280,7 @@ export type WorkEntrieUncheckedCreateInput = {
   id?: string
   date: Date | string
   duration_minutes: number
-  hourly_rate_at_time?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  hourly_rate_at_time: runtime.Decimal | runtime.DecimalJsLike | number | string
   user_id: string
 }
 
@@ -288,7 +288,7 @@ export type WorkEntrieUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   duration_minutes?: Prisma.IntFieldUpdateOperationsInput | number
-  hourly_rate_at_time?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  hourly_rate_at_time?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   user?: Prisma.UserUpdateOneRequiredWithoutEntriesNestedInput
 }
 
@@ -296,7 +296,7 @@ export type WorkEntrieUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   duration_minutes?: Prisma.IntFieldUpdateOperationsInput | number
-  hourly_rate_at_time?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  hourly_rate_at_time?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   user_id?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
@@ -304,7 +304,7 @@ export type WorkEntrieCreateManyInput = {
   id?: string
   date: Date | string
   duration_minutes: number
-  hourly_rate_at_time?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  hourly_rate_at_time: runtime.Decimal | runtime.DecimalJsLike | number | string
   user_id: string
 }
 
@@ -312,14 +312,14 @@ export type WorkEntrieUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   duration_minutes?: Prisma.IntFieldUpdateOperationsInput | number
-  hourly_rate_at_time?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  hourly_rate_at_time?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
 }
 
 export type WorkEntrieUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   duration_minutes?: Prisma.IntFieldUpdateOperationsInput | number
-  hourly_rate_at_time?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  hourly_rate_at_time?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   user_id?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
@@ -417,8 +417,8 @@ export type IntFieldUpdateOperationsInput = {
   divide?: number
 }
 
-export type NullableDecimalFieldUpdateOperationsInput = {
-  set?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+export type DecimalFieldUpdateOperationsInput = {
+  set?: runtime.Decimal | runtime.DecimalJsLike | number | string
   increment?: runtime.Decimal | runtime.DecimalJsLike | number | string
   decrement?: runtime.Decimal | runtime.DecimalJsLike | number | string
   multiply?: runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -429,14 +429,14 @@ export type WorkEntrieCreateWithoutUserInput = {
   id?: string
   date: Date | string
   duration_minutes: number
-  hourly_rate_at_time?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  hourly_rate_at_time: runtime.Decimal | runtime.DecimalJsLike | number | string
 }
 
 export type WorkEntrieUncheckedCreateWithoutUserInput = {
   id?: string
   date: Date | string
   duration_minutes: number
-  hourly_rate_at_time?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  hourly_rate_at_time: runtime.Decimal | runtime.DecimalJsLike | number | string
 }
 
 export type WorkEntrieCreateOrConnectWithoutUserInput = {
@@ -472,7 +472,7 @@ export type WorkEntrieScalarWhereInput = {
   id?: Prisma.StringFilter<"WorkEntrie"> | string
   date?: Prisma.DateTimeFilter<"WorkEntrie"> | Date | string
   duration_minutes?: Prisma.IntFilter<"WorkEntrie"> | number
-  hourly_rate_at_time?: Prisma.DecimalNullableFilter<"WorkEntrie"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  hourly_rate_at_time?: Prisma.DecimalFilter<"WorkEntrie"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   user_id?: Prisma.StringFilter<"WorkEntrie"> | string
 }
 
@@ -480,28 +480,28 @@ export type WorkEntrieCreateManyUserInput = {
   id?: string
   date: Date | string
   duration_minutes: number
-  hourly_rate_at_time?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  hourly_rate_at_time: runtime.Decimal | runtime.DecimalJsLike | number | string
 }
 
 export type WorkEntrieUpdateWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   duration_minutes?: Prisma.IntFieldUpdateOperationsInput | number
-  hourly_rate_at_time?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  hourly_rate_at_time?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
 }
 
 export type WorkEntrieUncheckedUpdateWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   duration_minutes?: Prisma.IntFieldUpdateOperationsInput | number
-  hourly_rate_at_time?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  hourly_rate_at_time?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
 }
 
 export type WorkEntrieUncheckedUpdateManyWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   duration_minutes?: Prisma.IntFieldUpdateOperationsInput | number
-  hourly_rate_at_time?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  hourly_rate_at_time?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
 }
 
 
@@ -561,7 +561,7 @@ export type $WorkEntriePayload<ExtArgs extends runtime.Types.Extensions.Internal
     id: string
     date: Date
     duration_minutes: number
-    hourly_rate_at_time: runtime.Decimal | null
+    hourly_rate_at_time: runtime.Decimal
     user_id: string
   }, ExtArgs["result"]["workEntrie"]>
   composites: {}

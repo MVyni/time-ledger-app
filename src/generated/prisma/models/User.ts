@@ -20,18 +20,8 @@ export type UserModel = runtime.Types.Result.DefaultSelection<Prisma.$UserPayloa
 
 export type AggregateUser = {
   _count: UserCountAggregateOutputType | null
-  _avg: UserAvgAggregateOutputType | null
-  _sum: UserSumAggregateOutputType | null
   _min: UserMinAggregateOutputType | null
   _max: UserMaxAggregateOutputType | null
-}
-
-export type UserAvgAggregateOutputType = {
-  base_hourly_rate: runtime.Decimal | null
-}
-
-export type UserSumAggregateOutputType = {
-  base_hourly_rate: runtime.Decimal | null
 }
 
 export type UserMinAggregateOutputType = {
@@ -39,7 +29,6 @@ export type UserMinAggregateOutputType = {
   name: string | null
   email: string | null
   password_hash: string | null
-  base_hourly_rate: runtime.Decimal | null
   created_at: Date | null
 }
 
@@ -48,7 +37,6 @@ export type UserMaxAggregateOutputType = {
   name: string | null
   email: string | null
   password_hash: string | null
-  base_hourly_rate: runtime.Decimal | null
   created_at: Date | null
 }
 
@@ -57,26 +45,16 @@ export type UserCountAggregateOutputType = {
   name: number
   email: number
   password_hash: number
-  base_hourly_rate: number
   created_at: number
   _all: number
 }
 
-
-export type UserAvgAggregateInputType = {
-  base_hourly_rate?: true
-}
-
-export type UserSumAggregateInputType = {
-  base_hourly_rate?: true
-}
 
 export type UserMinAggregateInputType = {
   id?: true
   name?: true
   email?: true
   password_hash?: true
-  base_hourly_rate?: true
   created_at?: true
 }
 
@@ -85,7 +63,6 @@ export type UserMaxAggregateInputType = {
   name?: true
   email?: true
   password_hash?: true
-  base_hourly_rate?: true
   created_at?: true
 }
 
@@ -94,7 +71,6 @@ export type UserCountAggregateInputType = {
   name?: true
   email?: true
   password_hash?: true
-  base_hourly_rate?: true
   created_at?: true
   _all?: true
 }
@@ -137,18 +113,6 @@ export type UserAggregateArgs<ExtArgs extends runtime.Types.Extensions.InternalA
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    * 
-   * Select which fields to average
-  **/
-  _avg?: UserAvgAggregateInputType
-  /**
-   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-   * 
-   * Select which fields to sum
-  **/
-  _sum?: UserSumAggregateInputType
-  /**
-   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-   * 
    * Select which fields to find the minimum value
   **/
   _min?: UserMinAggregateInputType
@@ -179,8 +143,6 @@ export type UserGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalArg
   take?: number
   skip?: number
   _count?: UserCountAggregateInputType | true
-  _avg?: UserAvgAggregateInputType
-  _sum?: UserSumAggregateInputType
   _min?: UserMinAggregateInputType
   _max?: UserMaxAggregateInputType
 }
@@ -190,11 +152,8 @@ export type UserGroupByOutputType = {
   name: string
   email: string
   password_hash: string
-  base_hourly_rate: runtime.Decimal
   created_at: Date
   _count: UserCountAggregateOutputType | null
-  _avg: UserAvgAggregateOutputType | null
-  _sum: UserSumAggregateOutputType | null
   _min: UserMinAggregateOutputType | null
   _max: UserMaxAggregateOutputType | null
 }
@@ -222,7 +181,6 @@ export type UserWhereInput = {
   name?: Prisma.StringFilter<"User"> | string
   email?: Prisma.StringFilter<"User"> | string
   password_hash?: Prisma.StringFilter<"User"> | string
-  base_hourly_rate?: Prisma.DecimalFilter<"User"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   created_at?: Prisma.DateTimeFilter<"User"> | Date | string
   entries?: Prisma.WorkEntrieListRelationFilter
   report?: Prisma.MonthlyReportListRelationFilter
@@ -233,7 +191,6 @@ export type UserOrderByWithRelationInput = {
   name?: Prisma.SortOrder
   email?: Prisma.SortOrder
   password_hash?: Prisma.SortOrder
-  base_hourly_rate?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
   entries?: Prisma.WorkEntrieOrderByRelationAggregateInput
   report?: Prisma.MonthlyReportOrderByRelationAggregateInput
@@ -247,7 +204,6 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.UserWhereInput | Prisma.UserWhereInput[]
   name?: Prisma.StringFilter<"User"> | string
   password_hash?: Prisma.StringFilter<"User"> | string
-  base_hourly_rate?: Prisma.DecimalFilter<"User"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   created_at?: Prisma.DateTimeFilter<"User"> | Date | string
   entries?: Prisma.WorkEntrieListRelationFilter
   report?: Prisma.MonthlyReportListRelationFilter
@@ -258,13 +214,10 @@ export type UserOrderByWithAggregationInput = {
   name?: Prisma.SortOrder
   email?: Prisma.SortOrder
   password_hash?: Prisma.SortOrder
-  base_hourly_rate?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
   _count?: Prisma.UserCountOrderByAggregateInput
-  _avg?: Prisma.UserAvgOrderByAggregateInput
   _max?: Prisma.UserMaxOrderByAggregateInput
   _min?: Prisma.UserMinOrderByAggregateInput
-  _sum?: Prisma.UserSumOrderByAggregateInput
 }
 
 export type UserScalarWhereWithAggregatesInput = {
@@ -275,7 +228,6 @@ export type UserScalarWhereWithAggregatesInput = {
   name?: Prisma.StringWithAggregatesFilter<"User"> | string
   email?: Prisma.StringWithAggregatesFilter<"User"> | string
   password_hash?: Prisma.StringWithAggregatesFilter<"User"> | string
-  base_hourly_rate?: Prisma.DecimalWithAggregatesFilter<"User"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   created_at?: Prisma.DateTimeWithAggregatesFilter<"User"> | Date | string
 }
 
@@ -284,7 +236,6 @@ export type UserCreateInput = {
   name: string
   email: string
   password_hash: string
-  base_hourly_rate: runtime.Decimal | runtime.DecimalJsLike | number | string
   created_at?: Date | string
   entries?: Prisma.WorkEntrieCreateNestedManyWithoutUserInput
   report?: Prisma.MonthlyReportCreateNestedManyWithoutUserInput
@@ -295,7 +246,6 @@ export type UserUncheckedCreateInput = {
   name: string
   email: string
   password_hash: string
-  base_hourly_rate: runtime.Decimal | runtime.DecimalJsLike | number | string
   created_at?: Date | string
   entries?: Prisma.WorkEntrieUncheckedCreateNestedManyWithoutUserInput
   report?: Prisma.MonthlyReportUncheckedCreateNestedManyWithoutUserInput
@@ -306,7 +256,6 @@ export type UserUpdateInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   password_hash?: Prisma.StringFieldUpdateOperationsInput | string
-  base_hourly_rate?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   entries?: Prisma.WorkEntrieUpdateManyWithoutUserNestedInput
   report?: Prisma.MonthlyReportUpdateManyWithoutUserNestedInput
@@ -317,7 +266,6 @@ export type UserUncheckedUpdateInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   password_hash?: Prisma.StringFieldUpdateOperationsInput | string
-  base_hourly_rate?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   entries?: Prisma.WorkEntrieUncheckedUpdateManyWithoutUserNestedInput
   report?: Prisma.MonthlyReportUncheckedUpdateManyWithoutUserNestedInput
@@ -328,7 +276,6 @@ export type UserCreateManyInput = {
   name: string
   email: string
   password_hash: string
-  base_hourly_rate: runtime.Decimal | runtime.DecimalJsLike | number | string
   created_at?: Date | string
 }
 
@@ -337,7 +284,6 @@ export type UserUpdateManyMutationInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   password_hash?: Prisma.StringFieldUpdateOperationsInput | string
-  base_hourly_rate?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -346,7 +292,6 @@ export type UserUncheckedUpdateManyInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   password_hash?: Prisma.StringFieldUpdateOperationsInput | string
-  base_hourly_rate?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -355,12 +300,7 @@ export type UserCountOrderByAggregateInput = {
   name?: Prisma.SortOrder
   email?: Prisma.SortOrder
   password_hash?: Prisma.SortOrder
-  base_hourly_rate?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
-}
-
-export type UserAvgOrderByAggregateInput = {
-  base_hourly_rate?: Prisma.SortOrder
 }
 
 export type UserMaxOrderByAggregateInput = {
@@ -368,7 +308,6 @@ export type UserMaxOrderByAggregateInput = {
   name?: Prisma.SortOrder
   email?: Prisma.SortOrder
   password_hash?: Prisma.SortOrder
-  base_hourly_rate?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
 }
 
@@ -377,12 +316,7 @@ export type UserMinOrderByAggregateInput = {
   name?: Prisma.SortOrder
   email?: Prisma.SortOrder
   password_hash?: Prisma.SortOrder
-  base_hourly_rate?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
-}
-
-export type UserSumOrderByAggregateInput = {
-  base_hourly_rate?: Prisma.SortOrder
 }
 
 export type UserScalarRelationFilter = {
@@ -392,14 +326,6 @@ export type UserScalarRelationFilter = {
 
 export type StringFieldUpdateOperationsInput = {
   set?: string
-}
-
-export type DecimalFieldUpdateOperationsInput = {
-  set?: runtime.Decimal | runtime.DecimalJsLike | number | string
-  increment?: runtime.Decimal | runtime.DecimalJsLike | number | string
-  decrement?: runtime.Decimal | runtime.DecimalJsLike | number | string
-  multiply?: runtime.Decimal | runtime.DecimalJsLike | number | string
-  divide?: runtime.Decimal | runtime.DecimalJsLike | number | string
 }
 
 export type DateTimeFieldUpdateOperationsInput = {
@@ -439,7 +365,6 @@ export type UserCreateWithoutEntriesInput = {
   name: string
   email: string
   password_hash: string
-  base_hourly_rate: runtime.Decimal | runtime.DecimalJsLike | number | string
   created_at?: Date | string
   report?: Prisma.MonthlyReportCreateNestedManyWithoutUserInput
 }
@@ -449,7 +374,6 @@ export type UserUncheckedCreateWithoutEntriesInput = {
   name: string
   email: string
   password_hash: string
-  base_hourly_rate: runtime.Decimal | runtime.DecimalJsLike | number | string
   created_at?: Date | string
   report?: Prisma.MonthlyReportUncheckedCreateNestedManyWithoutUserInput
 }
@@ -475,7 +399,6 @@ export type UserUpdateWithoutEntriesInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   password_hash?: Prisma.StringFieldUpdateOperationsInput | string
-  base_hourly_rate?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   report?: Prisma.MonthlyReportUpdateManyWithoutUserNestedInput
 }
@@ -485,7 +408,6 @@ export type UserUncheckedUpdateWithoutEntriesInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   password_hash?: Prisma.StringFieldUpdateOperationsInput | string
-  base_hourly_rate?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   report?: Prisma.MonthlyReportUncheckedUpdateManyWithoutUserNestedInput
 }
@@ -495,7 +417,6 @@ export type UserCreateWithoutReportInput = {
   name: string
   email: string
   password_hash: string
-  base_hourly_rate: runtime.Decimal | runtime.DecimalJsLike | number | string
   created_at?: Date | string
   entries?: Prisma.WorkEntrieCreateNestedManyWithoutUserInput
 }
@@ -505,7 +426,6 @@ export type UserUncheckedCreateWithoutReportInput = {
   name: string
   email: string
   password_hash: string
-  base_hourly_rate: runtime.Decimal | runtime.DecimalJsLike | number | string
   created_at?: Date | string
   entries?: Prisma.WorkEntrieUncheckedCreateNestedManyWithoutUserInput
 }
@@ -531,7 +451,6 @@ export type UserUpdateWithoutReportInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   password_hash?: Prisma.StringFieldUpdateOperationsInput | string
-  base_hourly_rate?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   entries?: Prisma.WorkEntrieUpdateManyWithoutUserNestedInput
 }
@@ -541,7 +460,6 @@ export type UserUncheckedUpdateWithoutReportInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   password_hash?: Prisma.StringFieldUpdateOperationsInput | string
-  base_hourly_rate?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   entries?: Prisma.WorkEntrieUncheckedUpdateManyWithoutUserNestedInput
 }
@@ -591,7 +509,6 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   name?: boolean
   email?: boolean
   password_hash?: boolean
-  base_hourly_rate?: boolean
   created_at?: boolean
   entries?: boolean | Prisma.User$entriesArgs<ExtArgs>
   report?: boolean | Prisma.User$reportArgs<ExtArgs>
@@ -603,7 +520,6 @@ export type UserSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   name?: boolean
   email?: boolean
   password_hash?: boolean
-  base_hourly_rate?: boolean
   created_at?: boolean
 }, ExtArgs["result"]["user"]>
 
@@ -612,7 +528,6 @@ export type UserSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   name?: boolean
   email?: boolean
   password_hash?: boolean
-  base_hourly_rate?: boolean
   created_at?: boolean
 }, ExtArgs["result"]["user"]>
 
@@ -621,11 +536,10 @@ export type UserSelectScalar = {
   name?: boolean
   email?: boolean
   password_hash?: boolean
-  base_hourly_rate?: boolean
   created_at?: boolean
 }
 
-export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "email" | "password_hash" | "base_hourly_rate" | "created_at", ExtArgs["result"]["user"]>
+export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "email" | "password_hash" | "created_at", ExtArgs["result"]["user"]>
 export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   entries?: boolean | Prisma.User$entriesArgs<ExtArgs>
   report?: boolean | Prisma.User$reportArgs<ExtArgs>
@@ -645,7 +559,6 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     name: string
     email: string
     password_hash: string
-    base_hourly_rate: runtime.Decimal
     created_at: Date
   }, ExtArgs["result"]["user"]>
   composites: {}
@@ -1076,7 +989,6 @@ export interface UserFieldRefs {
   readonly name: Prisma.FieldRef<"User", 'String'>
   readonly email: Prisma.FieldRef<"User", 'String'>
   readonly password_hash: Prisma.FieldRef<"User", 'String'>
-  readonly base_hourly_rate: Prisma.FieldRef<"User", 'Decimal'>
   readonly created_at: Prisma.FieldRef<"User", 'DateTime'>
 }
     
