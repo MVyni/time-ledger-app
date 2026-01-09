@@ -1,8 +1,8 @@
 import { beforeEach, describe, expect, it } from 'vitest'
 
-import { InMemoryUsersRepository } from "@/repositories/in-memory/in-memory-users-repository.js";
-import { RegisterUserService } from "./register-user.js";
-import { UserAlreadyExistError } from './errors/user-already-exist-error.js';
+import { InMemoryUsersRepository } from '@/repositories/in-memory/in-memory-users-repository.js'
+import { RegisterUserService } from './register-user.js'
+import { UserAlreadyExistError } from './errors/user-already-exist-error.js'
 
 import { compare } from 'bcryptjs';
 
@@ -19,7 +19,7 @@ describe('Register Service', async () => {
 
         const { user } = await sut.execute({
             name: 'Marcus Vynicius',
-            email: 'marcusvynicius@teste.com',
+            email: 'marcusvynicius@test.com',
             password: '123456',
         })
 
@@ -30,7 +30,7 @@ describe('Register Service', async () => {
 
         const { user } = await sut.execute({
           name: 'Marcus Vynicius',
-          email: 'marcusvynicius@teste.com',
+          email: 'marcusvynicius@test.com',
           password: '123456',
         })
 
@@ -43,13 +43,13 @@ describe('Register Service', async () => {
 
         await sut.execute({
           name: 'Marcus Vynicius',
-          email: 'marcusvynicius@teste.com',
+          email: 'marcusvynicius@test.com',
           password: '123456',
         })
 
         await expect(sut.execute({
           name: 'Marcus Vynicius',
-          email: 'marcusvynicius@teste.com',
+          email: 'marcusvynicius@test.com',
           password: '123456',
         })).rejects.toBeInstanceOf(UserAlreadyExistError)
     })
