@@ -1,7 +1,7 @@
 import { Router } from 'express'
 
-import { registerUser } from './users/register.js'
-import { authenticate } from './users/authenticate.js'
+import { registerUser } from './register.js'
+import { authenticate } from './authenticate.js'
 
 export const userRoutes = Router()
 

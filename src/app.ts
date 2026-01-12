@@ -2,7 +2,7 @@ import type { Request, Response, NextFunction } from 'express'
 import express from 'express'
 import { ZodError } from 'zod'
 import { env } from './env/index.js'
-import { userRoutes } from './http/controllers/routes.js'
+import { userRoutes } from './http/controllers/users/routes.js'
 
 export const app = express()
 
