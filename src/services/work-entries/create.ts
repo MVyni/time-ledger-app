@@ -21,6 +21,13 @@ export class WorkEntrieService {
     durationMinutes,
     hourlyRateAtTime,
   }: WorkEntrieServiceRequest): Promise<WorkEntrieServiceResponse> {
+
+    const workEntrieOnSameDate = await this.workEntriesRepository.findByUserIdOnDate(userId, new Date())
+
+    if (workEntrieOnSameDate) {
+      throw new Error()
+    }
+
     const workEntrie = await this.workEntriesRepository.create({
       user_id: userId,
       date,
