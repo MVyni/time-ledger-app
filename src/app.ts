@@ -3,12 +3,14 @@ import express from 'express'
 import { ZodError } from 'zod'
 import { env } from './env/index.js'
 import { userRoutes } from './http/controllers/users/routes.js'
+import { workEntrieRoutes } from './http/controllers/work-entries/routes.js'
 
 export const app = express()
 
 app.use(express.json())
 
 app.use('/user', userRoutes)
+app.use('/workentrie', workEntrieRoutes)
 
 app.use((err: Error, _req: Request, res: Response, _next: NextFunction) => {
   if (err instanceof ZodError) {

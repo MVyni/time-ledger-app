@@ -1,5 +1,5 @@
 import type { Request, Response } from "express";
-import { makeRegisterUserService } from "@/services/factories/make-register-user-service.js";
+import { makeRegisterUserService } from "@/services/factories/users/make-register-user-service.js";
 import { UserAlreadyExistError } from "@/services/errors/user-already-exist-error.js";
 
 import z from "zod";

@@ -1,6 +1,6 @@
 import { verifyJwt } from '@/http/middlewares/verify-jwt.js'
 import { InvalidCredentialsError } from '@/services/errors/invalid-credentials-error.js'
-import { makeAuthenticateUserService } from '@/services/factories/make-auth-user-service.js'
+import { makeAuthenticateUserService } from '@/services/factories/users/make-auth-user-service.js'
 import { TokenGenerate } from '@/utils/jwt-create.js'
 
 import type { Request, Response } from 'express'
