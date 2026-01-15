@@ -7,11 +7,23 @@ import dayjs from 'dayjs'
 export class PrismaWorkEntriesRepository implements WorkEntriesRepository {
 
     async create(data: Prisma.WorkEntrieUncheckedCreateInput) {
-        const work_entrie = await prisma.workEntrie.create({
+        const workEntry = await prisma.workEntrie.create({
             data,
         })
 
-        return work_entrie
+        return workEntry
+    }
+
+    async update(id: string, data: Prisma.WorkEntrieUncheckedUpdateInput) {
+        const workEntry = await prisma.workEntrie.update({
+            where: {
+                id,
+            },
+
+            data,
+        })
+
+        return workEntry
     }
 
     async findByUserIdOnDate(userId: string, date: Date) {
@@ -29,5 +41,15 @@ export class PrismaWorkEntriesRepository implements WorkEntriesRepository {
         })
         
         return workEntrie
+    }
+
+    async findById(id: string) {
+        const workEntry = await prisma.workEntrie.findUnique({
+            where: {
+                id,
+            }
+        })
+
+        return workEntry
     }
 }

@@ -1,17 +1,17 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
-import { WorkEntrieService } from './create.js'
+import { CreateWorkEntriesService } from './create.js'
 import { InMemoryWorkEntriesRepository } from '@/repositories/in-memory/in-memory-work-entries-repository.js'
 
-import { MaxDailyOfWorkEntrieError } from '../errors/max-daily-of-work-entrie-error.js'
+import { MaxDailyOfWorkEntriesError } from '../errors/max-daily-of-work-entrie-error.js'
 
 describe('Create Work Entrie Service (unit)', async () => {
     let workEntriesRepository: InMemoryWorkEntriesRepository
-    let sut: WorkEntrieService
+    let sut: CreateWorkEntriesService
 
     beforeEach(() => {
         workEntriesRepository = new InMemoryWorkEntriesRepository()
-        sut = new WorkEntrieService(workEntriesRepository)
+        sut = new CreateWorkEntriesService(workEntriesRepository)
 
         vi.useFakeTimers()
     })
@@ -53,6 +53,6 @@ describe('Create Work Entrie Service (unit)', async () => {
             date: mockDate,
             durationMinutes: 540,
             hourlyRateAtTime: 9.0,
-          })).rejects.toBeInstanceOf(MaxDailyOfWorkEntrieError)
+          })).rejects.toBeInstanceOf(MaxDailyOfWorkEntriesError)
     })
 })

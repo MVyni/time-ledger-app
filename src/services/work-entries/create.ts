@@ -1,20 +1,20 @@
 import type { WorkEntrie } from '@/generated/prisma/client.js'
 import type { WorkEntriesRepository } from '@/repositories/work-entries-repository.js'
 
-import { MaxDailyOfWorkEntrieError } from '../errors/max-daily-of-work-entrie-error.js'
+import { MaxDailyOfWorkEntriesError } from '../errors/max-daily-of-work-entrie-error.js'
 
-interface WorkEntrieServiceRequest {
+interface WorkEntriesServiceRequest {
   userId: string
   date: Date
   durationMinutes: number
   hourlyRateAtTime: number
 }
 
-interface WorkEntrieServiceResponse {
+interface WorkEntriesServiceResponse {
   workEntrie: WorkEntrie
 }
 
-export class CreateWorkEntrieService {
+export class CreateWorkEntriesService {
   constructor(private workEntriesRepository: WorkEntriesRepository) {}
 
   async execute({
@@ -22,12 +22,12 @@ export class CreateWorkEntrieService {
     date,
     durationMinutes,
     hourlyRateAtTime,
-  }: WorkEntrieServiceRequest): Promise<WorkEntrieServiceResponse> {
+  }: WorkEntriesServiceRequest): Promise<WorkEntriesServiceResponse> {
 
     const workEntrieOnSameDate = await this.workEntriesRepository.findByUserIdOnDate(userId, new Date())
 
     if (workEntrieOnSameDate) {
-      throw new MaxDailyOfWorkEntrieError()
+      throw new MaxDailyOfWorkEntriesError()
     }
 
     const workEntrie = await this.workEntriesRepository.create({
