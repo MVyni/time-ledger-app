@@ -24,7 +24,7 @@ export class CreateWorkEntriesService {
     hourlyRateAtTime,
   }: WorkEntriesServiceRequest): Promise<WorkEntriesServiceResponse> {
 
-    const workEntrieOnSameDate = await this.workEntriesRepository.findByUserIdOnDate(userId, new Date())
+    const workEntrieOnSameDate = await this.workEntriesRepository.findByUserIdOnDate(userId, date)
 
     if (workEntrieOnSameDate) {
       throw new MaxDailyOfWorkEntriesError()
