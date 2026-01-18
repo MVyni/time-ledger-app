@@ -5,7 +5,7 @@ import { InMemoryWorkEntriesRepository } from '@/repositories/in-memory/in-memor
 
 import { MaxDailyOfWorkEntriesError } from '../errors/max-daily-of-work-entrie-error.js'
 
-describe('Create Work Entrie Service (unit)', async () => {
+describe('Create Work Entry Service (unit)', async () => {
     let workEntriesRepository: InMemoryWorkEntriesRepository
     let sut: CreateWorkEntriesService
 
@@ -20,7 +20,7 @@ describe('Create Work Entrie Service (unit)', async () => {
         vi.useRealTimers()
     })
 
-    it('Should be able to register a work entrie', async () => {
+    it('Should be able to register a work entry', async () => {
 
         const mockDate = new Date(2026, 0, 12)
         vi.setSystemTime(mockDate)

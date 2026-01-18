@@ -13,7 +13,7 @@ export class InMemoryWorkEntriesRepository implements WorkEntriesRepository {
     data: Prisma.WorkEntrieUncheckedCreateInput
   ): Promise<WorkEntrie> {
     const workEntrie: WorkEntrie = {
-      id: randomUUID(),
+      id: data.id ?? randomUUID(),
       user_id: data.user_id,
       date: new Date(data.date),
       duration_minutes: data.duration_minutes,
