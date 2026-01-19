@@ -1,4 +1,3 @@
-import { MaxDailyOfWorkEntriesError } from '@/services/errors/max-daily-of-work-entrie-error.js'
 import { makeCreateWorkEntrieService } from '@/services/factories/work-entries/make-create-work-entrie-service.js'
 
 import type { Request, Response } from 'express'
@@ -15,7 +14,6 @@ export async function createWorkEntries(req: Request, res: Response) {
     const { date, durationMinutes, hourlyRateAtTime } = createWorkEntrieBodySchema.parse(req.body)
     
     const createWorkEntrieService = makeCreateWorkEntrieService()
-    try {
         
         await createWorkEntrieService.execute({
             userId: req.user.user_id,
@@ -24,11 +22,5 @@ export async function createWorkEntries(req: Request, res: Response) {
             hourlyRateAtTime
         })
 
-    } catch (error) {
-        if (error instanceof MaxDailyOfWorkEntriesError) {
-            return res.status(409).send({ message: error.message })
-        }
-    }
-
-    return res.status(201).send({ createWorkEntrieService })
+    return res.status(201).send({ message: 'Work entry created successfully'})
 }

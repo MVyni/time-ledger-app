@@ -1,4 +1,3 @@
-import { InvalidCredentialsError } from '@/services/errors/invalid-credentials-error.js'
 import { makeAuthenticateUserService } from '@/services/factories/users/make-auth-user-service.js'
 import { TokenGenerate } from '@/utils/jwt-create.js'
 
@@ -13,8 +12,6 @@ export async function authenticate(req: Request, res: Response) {
     })
 
     const { email, password } = authBodySchema.parse(req.body)
-
-    try {
         
         const authenticateUserService = makeAuthenticateUserService()
 
@@ -31,12 +28,4 @@ export async function authenticate(req: Request, res: Response) {
         })
 
         return res.status(200).send({ token })
-
-    } catch (error) {
-        if (error instanceof InvalidCredentialsError) {
-            return res.status(400).send({ message: error.message })
-        }
-        
-        throw error
-    }
 }
