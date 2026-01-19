@@ -35,7 +35,7 @@ describe('Create Work Entry Service (unit)', async () => {
         expect(workEntrie.id).toEqual(expect.any(String))
     })
 
-    it('Should not be able to register a work entry twice', async () => {
+    it('Should not be able to register a work entry twice on the same day', async () => {
 
         const mockDate = new Date(2026, 0, 12, 1)
         vi.setSystemTime(mockDate)

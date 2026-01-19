@@ -57,4 +57,16 @@ describe('Update Work Entry Service (unit)', async () => {
             hourlyRateAtTime: 10.0
         })).rejects.toBeInstanceOf(ResourceNotFoundError)
     })
+  
+    it('Should not be able to update a non-existing work entry', async () => {
+      await expect(() =>
+        sut.execute({
+          workEntryId: 'work-entry-non-existing',
+          userId: 'user-01',
+          date: mockDate,
+          durationMinutes: 550,
+          hourlyRateAtTime: 10.0,
+        })
+      ).rejects.toBeInstanceOf(ResourceNotFoundError)
+    })
 })
