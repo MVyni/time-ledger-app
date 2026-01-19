@@ -2,18 +2,18 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { Decimal } from '@prisma/client/runtime/client'
 
 import { InMemoryWorkEntriesRepository } from '@/repositories/in-memory/in-memory-work-entries-repository.js'
-import { updateWorkEntriesService } from './update.js'
+import { UpdateWorkEntriesService } from './update.js'
 import { ResourceNotFoundError } from '../errors/resource-not-found-error.js'
 
 describe('Update Work Entry Service (unit)', async () => {
   let workEntriesRepository: InMemoryWorkEntriesRepository
-  let sut: updateWorkEntriesService
+  let sut: UpdateWorkEntriesService
 
     const mockDate = new Date(2026, 0, 12)
     
   beforeEach(async () => {
     workEntriesRepository = new InMemoryWorkEntriesRepository()
-      sut = new updateWorkEntriesService(workEntriesRepository)
+      sut = new UpdateWorkEntriesService(workEntriesRepository)
       
       vi.setSystemTime(mockDate)
 

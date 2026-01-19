@@ -3,7 +3,7 @@ import type { WorkEntriesRepository } from '@/repositories/work-entries-reposito
 import { ResourceNotFoundError } from '../errors/resource-not-found-error.js'
 import { MaxDailyOfWorkEntriesError } from '../errors/max-daily-of-work-entrie-error.js'
 
-interface updateWorkEntriesServiceRequest {
+interface UpdateWorkEntriesServiceRequest {
   workEntryId: string
   userId: string
   date: Date
@@ -11,11 +11,11 @@ interface updateWorkEntriesServiceRequest {
   hourlyRateAtTime: number
 }
 
-interface updateWorkEntriesServiceResponse {
+interface UpdateWorkEntriesServiceResponse {
   workEntrie: WorkEntrie
 }
 
-export class updateWorkEntriesService {
+export class UpdateWorkEntriesService {
   constructor(private workEntriesRepository: WorkEntriesRepository) {}
 
   async execute({
@@ -24,7 +24,7 @@ export class updateWorkEntriesService {
     date,
     durationMinutes,
     hourlyRateAtTime,
-  }: updateWorkEntriesServiceRequest): Promise<updateWorkEntriesServiceResponse> {
+  }: UpdateWorkEntriesServiceRequest): Promise<UpdateWorkEntriesServiceResponse> {
     const workEntryExist =
       await this.workEntriesRepository.findById(workEntryId)
 

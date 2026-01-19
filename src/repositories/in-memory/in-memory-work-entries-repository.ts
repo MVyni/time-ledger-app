@@ -11,7 +11,7 @@ export class InMemoryWorkEntriesRepository implements WorkEntriesRepository {
 
   async create(
     data: Prisma.WorkEntrieUncheckedCreateInput
-  ): Promise<WorkEntrie> {
+  ) {
     const workEntrie: WorkEntrie = {
       id: data.id ?? randomUUID(),
       user_id: data.user_id,
@@ -29,7 +29,7 @@ export class InMemoryWorkEntriesRepository implements WorkEntriesRepository {
   async update(
     id: string,
     data: Prisma.WorkEntrieUncheckedUpdateInput
-  ): Promise<WorkEntrie> {
+  ) {
     const index = this.items.findIndex((item) => item.id === id)
 
     if (index === -1) {
@@ -53,7 +53,15 @@ export class InMemoryWorkEntriesRepository implements WorkEntriesRepository {
     return this.items[index]
   }
 
-  async findById(id: string): Promise<WorkEntrie | null> {
+  async delete(id: string) {
+    const index = this.items.findIndex((item) => item.id === id)
+
+    if (index > -1) {
+      this.items.splice(index, 1)
+    }
+  }
+
+  async findById(id: string) {
     const workEntry = this.items.find((item) => item.id === id)
 
     if (!workEntry) {
@@ -66,7 +74,7 @@ export class InMemoryWorkEntriesRepository implements WorkEntriesRepository {
   async findByUserIdOnDate(
     userId: string,
     date: Date
-  ): Promise<WorkEntrie | null> {
+  ) {
     const startOfTheDay = dayjs(date).startOf('date')
     const endOfTheDay = dayjs(date).endOf('date')
 

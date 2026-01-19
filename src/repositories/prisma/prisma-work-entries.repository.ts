@@ -26,6 +26,14 @@ export class PrismaWorkEntriesRepository implements WorkEntriesRepository {
         return workEntry
     }
 
+    async delete(id: string) {
+        await prisma.workEntrie.delete({
+            where: {
+                id,
+            }
+        })
+    }
+
     async findByUserIdOnDate(userId: string, date: Date) {
         const startOfTheDay = dayjs(date).startOf('date')
         const endOfTheDay = dayjs(date).endOf('date')
