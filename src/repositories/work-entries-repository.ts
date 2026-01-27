@@ -7,4 +7,5 @@ export interface WorkEntriesRepository {
   delete(id: string): Promise<void>
   findByUserIdOnDate(userId: string, date: Date): Promise<WorkEntrie | null>
   findById(id: string): Promise<WorkEntrie | null>
+  findManyByUser(userId: string): Promise<WorkEntrie[]>
 }

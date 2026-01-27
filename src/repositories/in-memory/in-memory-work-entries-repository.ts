@@ -94,4 +94,9 @@ export class InMemoryWorkEntriesRepository implements WorkEntriesRepository {
 
     return workEntrieOnSameDate
   }
+
+  async findManyByUser(userId: string) {
+
+    return this.items.filter((item) => item.user_id === userId)
+  }
 }

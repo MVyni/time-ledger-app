@@ -60,4 +60,14 @@ export class PrismaWorkEntriesRepository implements WorkEntriesRepository {
 
         return workEntry
     }
+
+    async findManyByUser(userId: string) {
+        const workEntries = await prisma.workEntrie.findMany({
+            where: {
+                user_id: userId,
+            }
+        })
+
+        return workEntries
+    }
 }
