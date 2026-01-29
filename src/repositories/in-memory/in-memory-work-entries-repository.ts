@@ -99,4 +99,5 @@ export class InMemoryWorkEntriesRepository implements WorkEntriesRepository {
 
     return this.items.filter((item) => item.user_id === userId)
   }
+  
 }

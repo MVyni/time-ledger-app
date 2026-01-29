@@ -21,8 +21,6 @@ model User {
   created_at DateTime @default(now())
 
   entries WorkEntrie[]
-  report MonthlyReport[]
-  
 
   @@map("users")
 }
@@ -36,20 +34,6 @@ model WorkEntrie {
   user User @relation(fields: [user_id], references: [id])
   user_id String
 
-
+  @@index([user_id, date])
   @@map("work_entries")
-}
-
-model MonthlyReport {
-  id String @id @default(uuid())
-  month Int
-  year Int
-  total_minutes Int
-  total_earnings Decimal @db.Decimal(12, 2)
-
-  user User @relation(fields: [user_id], references: [id])
-  user_id String
-
-
-  @@map("monthly_reports")
 }
