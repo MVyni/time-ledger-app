@@ -1,5 +1,8 @@
 import { Prisma, type WorkEntrie } from '@/generated/prisma/client.js'
-import type { WorkEntriesRepository } from '../work-entries-repository.js'
+import type {
+  MonthlyHistory,
+  WorkEntriesRepository,
+} from '../work-entries-repository.js'
 
 import { randomUUID } from 'node:crypto'
 import dayjs from 'dayjs'
@@ -9,9 +12,7 @@ import { ResourceNotFoundError } from '@/services/errors/resource-not-found-erro
 export class InMemoryWorkEntriesRepository implements WorkEntriesRepository {
   public items: WorkEntrie[] = []
 
-  async create(
-    data: Prisma.WorkEntrieUncheckedCreateInput
-  ) {
+  async create(data: Prisma.WorkEntrieUncheckedCreateInput) {
     const workEntrie: WorkEntrie = {
       id: data.id ?? randomUUID(),
       user_id: data.user_id,
@@ -26,10 +27,7 @@ export class InMemoryWorkEntriesRepository implements WorkEntriesRepository {
     return workEntrie
   }
 
-  async update(
-    id: string,
-    data: Prisma.WorkEntrieUncheckedUpdateInput
-  ) {
+  async update(id: string, data: Prisma.WorkEntrieUncheckedUpdateInput) {
     const index = this.items.findIndex((item) => item.id === id)
 
     if (index === -1) {
@@ -71,10 +69,7 @@ export class InMemoryWorkEntriesRepository implements WorkEntriesRepository {
     return workEntry
   }
 
-  async findByUserIdOnDate(
-    userId: string,
-    date: Date
-  ) {
+  async findByUserIdOnDate(userId: string, date: Date) {
     const startOfTheDay = dayjs(date).startOf('date')
     const endOfTheDay = dayjs(date).endOf('date')
 
@@ -96,8 +91,47 @@ export class InMemoryWorkEntriesRepository implements WorkEntriesRepository {
   }
 
   async findManyByUser(userId: string) {
-
     return this.items.filter((item) => item.user_id === userId)
   }
-  
+
+  async findMonthlyHistory(userId: string): Promise<MonthlyHistory[]> {
+    const userEntries = this.items.filter((item) => item.user_id === userId)
+
+    const grouped = userEntries.reduce(
+      (acc, entry) => {
+        const date = dayjs(entry.date)
+        const key = `${date.year()}-${date.month() + 1}`
+
+        if (!acc[key]) {
+          acc[key] = {
+            month: date.month() + 1,
+            year: date.year(),
+            totalMinutes: 0,
+            totalEarnings: 0,
+          }
+        }
+
+        acc[key].totalMinutes += entry.duration_minutes
+
+        const hours = entry.duration_minutes / 60
+        const earnings = hours * Number(entry.hourly_rate_at_time)
+
+        acc[key].totalEarnings += earnings
+
+        return acc
+      },
+      {} as Record<string, MonthlyHistory>
+    )
+
+    const history = Object.values(grouped).sort((a, b) => {
+      if (b.year !== a.year) return b.year - a.year
+      return b.month - a.month
+    })
+
+    // Simular o arredondamento do banco de dados
+    return history.map((h) => ({
+      ...h,
+      totalEarnings: Number(h.totalEarnings.toFixed(2)),
+    }))
+  }
 }

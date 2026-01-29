@@ -1,4 +1,4 @@
-import type { Prisma, WorkEntrie } from '@/generated/prisma/client.js'
+import type { Prisma } from '@/generated/prisma/client.js'
 import type { WorkEntriesRepository } from '../work-entries-repository.js'
 import { prisma } from '@/lib/prisma.js'
 
@@ -61,13 +61,34 @@ export class PrismaWorkEntriesRepository implements WorkEntriesRepository {
         return workEntry
     }
 
-    async findManyByUser(userId: string) {
-        const workEntries = await prisma.workEntrie.findMany({
-            where: {
-                user_id: userId,
-            }
-        })
+    async findMonthlyHistory(userId: string) {
+        const history = await prisma.$queryRaw < Array < {
+            month: number,
+            year: number,
+            total_minutes: number,
+            total_earnings: number,
+        }>>`
+            SELECT
+                CAST(EXTRACT(YEAR FROM date) AS INTEGER) as year,
+                CAST(EXTRACT(MONTH FROM date) AS INTEGER) as month,
+                CAST(SUM(duration_minutes) AS INTEGER) as total_minutes,
+                CAST(SUM( (duration_minutes::NUMERIC / 60) * hourly_rate_at_time) AS FLOAT) as total_earnings
+            FROM
+                work_entries
+            WHERE
+                user_id = ${userId}
+            GROUP BY
+                EXTRACT(YEAR FROM date),
+                EXTRACT(MONTH FROM date)
+            ORDER BY
+                year DESC, month DESC
+        `
 
-        return workEntries
+        return history.map(item => ({
+            month: item.month,
+            year: item.year,
+            totalMinutes: item.total_minutes,
+            totalEarnings: Number(item.total_earnings.toFixed(2))
+        }))
     }
 }

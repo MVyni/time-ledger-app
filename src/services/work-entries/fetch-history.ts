@@ -1,12 +1,11 @@
-import type { WorkEntrie } from '@/generated/prisma/client.js'
-import type { WorkEntriesRepository } from '@/repositories/work-entries-repository.js'
+import type { MonthlyHistory, WorkEntriesRepository } from '@/repositories/work-entries-repository.js'
 
 interface FetchUserHistoryServiceRequest {
     userId: string
 }
 
 interface FetchUserHistoryServiceResponse {
-    workEntries: WorkEntrie[]
+    monthlyHistory: MonthlyHistory[]
 }
 
 export class FetchUserHistoryService {
@@ -14,8 +13,8 @@ export class FetchUserHistoryService {
 
     async execute({ userId }: FetchUserHistoryServiceRequest): Promise<FetchUserHistoryServiceResponse> {
 
-        const workEntries = await this.workEntriesRepository.findManyByUser(userId)
+        const monthlyHistory = await this.workEntriesRepository.findMonthlyHistory(userId)
 
-        
+        return { monthlyHistory }
     }
 }

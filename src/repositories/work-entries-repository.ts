@@ -1,5 +1,11 @@
 import type { Prisma, WorkEntrie } from "@/generated/prisma/client.js"
 
+export interface MonthlyHistory {
+  month: number
+  year: number
+  totalMinutes: number
+  totalEarnings: number
+}
 
 export interface WorkEntriesRepository {
   create(data: Prisma.WorkEntrieUncheckedCreateInput): Promise<WorkEntrie>
@@ -7,5 +13,5 @@ export interface WorkEntriesRepository {
   delete(id: string): Promise<void>
   findByUserIdOnDate(userId: string, date: Date): Promise<WorkEntrie | null>
   findById(id: string): Promise<WorkEntrie | null>
-  findManyByUser(userId: string): Promise<WorkEntrie[]>
+  findMonthlyHistory(userId: string): Promise<MonthlyHistory[]>
 }
