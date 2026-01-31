@@ -33,15 +33,18 @@ describe('Delete Work Entry Service (unit)', async () => {
   })
 
   it('Should be able to delete a work entry', async () => {
+    // Execution: user-01 deleting their own entry
     await sut.execute({
       workEntryId: 'work-entry-01',
       userId: 'user-01',
     })
 
+    // Assertion: Repository should be empty after deletion
     expect(workEntriesRepository.items).toHaveLength(0)
   })
 
   it('Should not be possible for a user delete a work entry that is not their own', async () => {
+    // Assertion: user-02 trying to delete user-01's entry should fail
     await expect(() =>
       sut.execute({
         workEntryId: 'work-entry-01',
@@ -51,6 +54,7 @@ describe('Delete Work Entry Service (unit)', async () => {
   })
 
   it('Should not be able to delete a non-existing work entry', async () => {
+    // Assertion: trying to delete a non-existent ID should fail
     await expect(() =>
       sut.execute({
         workEntryId: 'work-entry-non-existing',

@@ -94,7 +94,7 @@ export class InMemoryWorkEntriesRepository implements WorkEntriesRepository {
     return this.items.filter((item) => item.user_id === userId)
   }
 
-  async findMonthlyHistory(userId: string): Promise<MonthlyHistory[]> {
+  async findMonthlyHistory(userId: string) {
     const userEntries = this.items.filter((item) => item.user_id === userId)
 
     const grouped = userEntries.reduce(

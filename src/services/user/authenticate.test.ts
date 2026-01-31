@@ -16,21 +16,25 @@ describe('Authenticate Service (unit)', async () => {
   })
 
   it('Should be able to authenticate user', async () => {
+    // Setup: Create a user with hashed password
     await usersRepository.create({
       name: 'Marcus Vynicius',
       email: 'marcusvynicius@test.com',
       password_hash: await hash('123456', 6),
     })
 
+    // Execution: Attempt to login with correct credentials
     const { user } = await sut.execute({
       email: 'marcusvynicius@test.com',
       password: '123456',
     })
 
+    // Assertion: User returned successfully
     expect(user.id).toEqual(expect.any(String))
   })
 
   it('Should not be able to authenticate with wrong e-mail', async () => {
+    // Assertion: Trying to login with non-existent email should fail
     await expect(() =>
       sut.execute({
         email: 'marcusvynicius@test.com',
@@ -40,12 +44,14 @@ describe('Authenticate Service (unit)', async () => {
   })
 
   it('Should not be able to authenticate with wrong password', async () => {
+    // Setup: Create valid user
     await usersRepository.create({
       name: 'Marcus Vynicius',
       email: 'marcusvynicius@test.com',
       password_hash: await hash('123456', 6),
     })
 
+    // Assertion: correct email but wrong password should fail
     await expect(() =>
       sut.execute({
         email: 'marcusvynicius@test.com',
