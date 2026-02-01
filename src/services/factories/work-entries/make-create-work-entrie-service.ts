@@ -3,7 +3,7 @@ import { CreateWorkEntriesService } from '@/services/work-entries/create.js'
 
 export function makeCreateWorkEntrieService() {
   const workEntriesRepository = new PrismaWorkEntriesRepository()
-  const useCase = new CreateWorkEntriesService(workEntriesRepository)
+  const service = new CreateWorkEntriesService(workEntriesRepository)
 
-  return useCase
+  return service
 }

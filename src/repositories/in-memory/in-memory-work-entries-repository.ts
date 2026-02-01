@@ -90,10 +90,6 @@ export class InMemoryWorkEntriesRepository implements WorkEntriesRepository {
     return workEntrieOnSameDate
   }
 
-  async findManyByUser(userId: string) {
-    return this.items.filter((item) => item.user_id === userId)
-  }
-
   async findMonthlyHistory(userId: string) {
     const userEntries = this.items.filter((item) => item.user_id === userId)
 
@@ -128,10 +124,18 @@ export class InMemoryWorkEntriesRepository implements WorkEntriesRepository {
       return b.month - a.month
     })
 
-    // Simular o arredondamento do banco de dados
+    // Simulate database rounding.
     return history.map((h) => ({
       ...h,
       totalEarnings: Number(h.totalEarnings.toFixed(2)),
     }))
+  }
+
+  async findManyEntriesByUser(userId: string) {
+    const entries = this.items.filter((item) => item.user_id === userId)
+
+    return entries.sort((a, b) => {
+      return a.date.getTime() - b.date.getTime()
+    })
   }
 }

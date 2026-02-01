@@ -3,7 +3,7 @@ import { UpdateWorkEntriesService } from '@/services/work-entries/update.js'
 
 export function makeUpdateWorkEntrieService() {
   const workEntriesRepository = new PrismaWorkEntriesRepository()
-  const useCase = new UpdateWorkEntriesService(workEntriesRepository)
+  const service = new UpdateWorkEntriesService(workEntriesRepository)
 
-  return useCase
+  return service
 }

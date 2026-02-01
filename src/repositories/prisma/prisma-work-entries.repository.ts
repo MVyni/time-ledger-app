@@ -1,4 +1,4 @@
-import type { Prisma } from '@/generated/prisma/client.js'
+import type { Prisma, WorkEntrie } from '@/generated/prisma/client.js'
 import type { WorkEntriesRepository } from '../work-entries-repository.js'
 import { prisma } from '@/lib/prisma.js'
 
@@ -90,5 +90,18 @@ export class PrismaWorkEntriesRepository implements WorkEntriesRepository {
             totalMinutes: item.total_minutes,
             totalEarnings: Number(item.total_earnings.toFixed(2))
         }))
+    }
+
+    async findManyEntriesByUser(userId: string) {
+        const workEntries = await prisma.workEntrie.findMany({
+            where: {
+                user_id: userId
+            },
+            orderBy: {
+                date: 'asc'
+            }
+        })
+
+        return workEntries
     }
 }

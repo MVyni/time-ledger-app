@@ -13,8 +13,7 @@ export async function updateWorkEntries(req: Request, res: Response) {
 
   const updateWorkEntryParamsSchema = z.object({ workEntryId: z.string() })
 
-  const { date, durationMinutes, hourlyRateAtTime } =
-    updateWorkEntryBodySchema.parse(req.body)
+  const { date, durationMinutes, hourlyRateAtTime } = updateWorkEntryBodySchema.parse(req.body)
   const { workEntryId } = updateWorkEntryParamsSchema.parse(req.params)
 
   const updateWorkEntrieService = makeUpdateWorkEntrieService()

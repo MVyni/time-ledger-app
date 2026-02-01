@@ -2,7 +2,6 @@ import type { Request, Response } from 'express'
 
 import { makeDeleteWorkEntrieService } from '@/services/factories/work-entries/make-delete-work-entries-service.js'
 
-
 import z from 'zod'
 
 export async function deleteWorkEntries(req: Request, res: Response) {

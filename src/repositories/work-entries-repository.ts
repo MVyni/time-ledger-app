@@ -14,4 +14,5 @@ export interface WorkEntriesRepository {
   findByUserIdOnDate(userId: string, date: Date): Promise<WorkEntrie | null>
   findById(id: string): Promise<WorkEntrie | null>
   findMonthlyHistory(userId: string): Promise<MonthlyHistory[]>
+  findManyEntriesByUser(userId: string): Promise<WorkEntrie[]>
 }
