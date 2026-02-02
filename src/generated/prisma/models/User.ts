@@ -183,7 +183,6 @@ export type UserWhereInput = {
   password_hash?: Prisma.StringFilter<"User"> | string
   created_at?: Prisma.DateTimeFilter<"User"> | Date | string
   entries?: Prisma.WorkEntrieListRelationFilter
-  report?: Prisma.MonthlyReportListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
@@ -193,7 +192,6 @@ export type UserOrderByWithRelationInput = {
   password_hash?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
   entries?: Prisma.WorkEntrieOrderByRelationAggregateInput
-  report?: Prisma.MonthlyReportOrderByRelationAggregateInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -206,7 +204,6 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   password_hash?: Prisma.StringFilter<"User"> | string
   created_at?: Prisma.DateTimeFilter<"User"> | Date | string
   entries?: Prisma.WorkEntrieListRelationFilter
-  report?: Prisma.MonthlyReportListRelationFilter
 }, "id" | "email">
 
 export type UserOrderByWithAggregationInput = {
@@ -238,7 +235,6 @@ export type UserCreateInput = {
   password_hash: string
   created_at?: Date | string
   entries?: Prisma.WorkEntrieCreateNestedManyWithoutUserInput
-  report?: Prisma.MonthlyReportCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -248,7 +244,6 @@ export type UserUncheckedCreateInput = {
   password_hash: string
   created_at?: Date | string
   entries?: Prisma.WorkEntrieUncheckedCreateNestedManyWithoutUserInput
-  report?: Prisma.MonthlyReportUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserUpdateInput = {
@@ -258,7 +253,6 @@ export type UserUpdateInput = {
   password_hash?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   entries?: Prisma.WorkEntrieUpdateManyWithoutUserNestedInput
-  report?: Prisma.MonthlyReportUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -268,7 +262,6 @@ export type UserUncheckedUpdateInput = {
   password_hash?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   entries?: Prisma.WorkEntrieUncheckedUpdateManyWithoutUserNestedInput
-  report?: Prisma.MonthlyReportUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -346,27 +339,12 @@ export type UserUpdateOneRequiredWithoutEntriesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutEntriesInput, Prisma.UserUpdateWithoutEntriesInput>, Prisma.UserUncheckedUpdateWithoutEntriesInput>
 }
 
-export type UserCreateNestedOneWithoutReportInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutReportInput, Prisma.UserUncheckedCreateWithoutReportInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutReportInput
-  connect?: Prisma.UserWhereUniqueInput
-}
-
-export type UserUpdateOneRequiredWithoutReportNestedInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutReportInput, Prisma.UserUncheckedCreateWithoutReportInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutReportInput
-  upsert?: Prisma.UserUpsertWithoutReportInput
-  connect?: Prisma.UserWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutReportInput, Prisma.UserUpdateWithoutReportInput>, Prisma.UserUncheckedUpdateWithoutReportInput>
-}
-
 export type UserCreateWithoutEntriesInput = {
   id?: string
   name: string
   email: string
   password_hash: string
   created_at?: Date | string
-  report?: Prisma.MonthlyReportCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutEntriesInput = {
@@ -375,7 +353,6 @@ export type UserUncheckedCreateWithoutEntriesInput = {
   email: string
   password_hash: string
   created_at?: Date | string
-  report?: Prisma.MonthlyReportUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutEntriesInput = {
@@ -400,7 +377,6 @@ export type UserUpdateWithoutEntriesInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   password_hash?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  report?: Prisma.MonthlyReportUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutEntriesInput = {
@@ -409,59 +385,6 @@ export type UserUncheckedUpdateWithoutEntriesInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   password_hash?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  report?: Prisma.MonthlyReportUncheckedUpdateManyWithoutUserNestedInput
-}
-
-export type UserCreateWithoutReportInput = {
-  id?: string
-  name: string
-  email: string
-  password_hash: string
-  created_at?: Date | string
-  entries?: Prisma.WorkEntrieCreateNestedManyWithoutUserInput
-}
-
-export type UserUncheckedCreateWithoutReportInput = {
-  id?: string
-  name: string
-  email: string
-  password_hash: string
-  created_at?: Date | string
-  entries?: Prisma.WorkEntrieUncheckedCreateNestedManyWithoutUserInput
-}
-
-export type UserCreateOrConnectWithoutReportInput = {
-  where: Prisma.UserWhereUniqueInput
-  create: Prisma.XOR<Prisma.UserCreateWithoutReportInput, Prisma.UserUncheckedCreateWithoutReportInput>
-}
-
-export type UserUpsertWithoutReportInput = {
-  update: Prisma.XOR<Prisma.UserUpdateWithoutReportInput, Prisma.UserUncheckedUpdateWithoutReportInput>
-  create: Prisma.XOR<Prisma.UserCreateWithoutReportInput, Prisma.UserUncheckedCreateWithoutReportInput>
-  where?: Prisma.UserWhereInput
-}
-
-export type UserUpdateToOneWithWhereWithoutReportInput = {
-  where?: Prisma.UserWhereInput
-  data: Prisma.XOR<Prisma.UserUpdateWithoutReportInput, Prisma.UserUncheckedUpdateWithoutReportInput>
-}
-
-export type UserUpdateWithoutReportInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  password_hash?: Prisma.StringFieldUpdateOperationsInput | string
-  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  entries?: Prisma.WorkEntrieUpdateManyWithoutUserNestedInput
-}
-
-export type UserUncheckedUpdateWithoutReportInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  password_hash?: Prisma.StringFieldUpdateOperationsInput | string
-  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  entries?: Prisma.WorkEntrieUncheckedUpdateManyWithoutUserNestedInput
 }
 
 
@@ -471,12 +394,10 @@ export type UserUncheckedUpdateWithoutReportInput = {
 
 export type UserCountOutputType = {
   entries: number
-  report: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   entries?: boolean | UserCountOutputTypeCountEntriesArgs
-  report?: boolean | UserCountOutputTypeCountReportArgs
 }
 
 /**
@@ -496,13 +417,6 @@ export type UserCountOutputTypeCountEntriesArgs<ExtArgs extends runtime.Types.Ex
   where?: Prisma.WorkEntrieWhereInput
 }
 
-/**
- * UserCountOutputType without action
- */
-export type UserCountOutputTypeCountReportArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.MonthlyReportWhereInput
-}
-
 
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -511,7 +425,6 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   password_hash?: boolean
   created_at?: boolean
   entries?: boolean | Prisma.User$entriesArgs<ExtArgs>
-  report?: boolean | Prisma.User$reportArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -542,7 +455,6 @@ export type UserSelectScalar = {
 export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "email" | "password_hash" | "created_at", ExtArgs["result"]["user"]>
 export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   entries?: boolean | Prisma.User$entriesArgs<ExtArgs>
-  report?: boolean | Prisma.User$reportArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -552,7 +464,6 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   name: "User"
   objects: {
     entries: Prisma.$WorkEntriePayload<ExtArgs>[]
-    report: Prisma.$MonthlyReportPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -955,7 +866,6 @@ readonly fields: UserFieldRefs;
 export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   entries<T extends Prisma.User$entriesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$entriesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$WorkEntriePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  report<T extends Prisma.User$reportArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$reportArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MonthlyReportPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1399,30 +1309,6 @@ export type User$entriesArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
   take?: number
   skip?: number
   distinct?: Prisma.WorkEntrieScalarFieldEnum | Prisma.WorkEntrieScalarFieldEnum[]
-}
-
-/**
- * User.report
- */
-export type User$reportArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the MonthlyReport
-   */
-  select?: Prisma.MonthlyReportSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the MonthlyReport
-   */
-  omit?: Prisma.MonthlyReportOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.MonthlyReportInclude<ExtArgs> | null
-  where?: Prisma.MonthlyReportWhereInput
-  orderBy?: Prisma.MonthlyReportOrderByWithRelationInput | Prisma.MonthlyReportOrderByWithRelationInput[]
-  cursor?: Prisma.MonthlyReportWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.MonthlyReportScalarFieldEnum | Prisma.MonthlyReportScalarFieldEnum[]
 }
 
 /**

@@ -52,8 +52,7 @@ export const AnyNull = runtime.AnyNull
 
 export const ModelName = {
   User: 'User',
-  WorkEntrie: 'WorkEntrie',
-  MonthlyReport: 'MonthlyReport'
+  WorkEntrie: 'WorkEntrie'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -92,18 +91,6 @@ export const WorkEntrieScalarFieldEnum = {
 } as const
 
 export type WorkEntrieScalarFieldEnum = (typeof WorkEntrieScalarFieldEnum)[keyof typeof WorkEntrieScalarFieldEnum]
-
-
-export const MonthlyReportScalarFieldEnum = {
-  id: 'id',
-  month: 'month',
-  year: 'year',
-  total_minutes: 'total_minutes',
-  total_earnings: 'total_earnings',
-  user_id: 'user_id'
-} as const
-
-export type MonthlyReportScalarFieldEnum = (typeof MonthlyReportScalarFieldEnum)[keyof typeof MonthlyReportScalarFieldEnum]
 
 
 export const SortOrder = {

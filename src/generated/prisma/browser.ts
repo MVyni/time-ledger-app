@@ -27,8 +27,3 @@ export type User = Prisma.UserModel
  * 
  */
 export type WorkEntrie = Prisma.WorkEntrieModel
-/**
- * Model MonthlyReport
- * 
- */
-export type MonthlyReport = Prisma.MonthlyReportModel

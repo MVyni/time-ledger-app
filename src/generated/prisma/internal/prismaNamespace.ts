@@ -385,8 +385,7 @@ type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRe
 
 export const ModelName = {
   User: 'User',
-  WorkEntrie: 'WorkEntrie',
-  MonthlyReport: 'MonthlyReport'
+  WorkEntrie: 'WorkEntrie'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -402,7 +401,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "workEntrie" | "monthlyReport"
+    modelProps: "user" | "workEntrie"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -554,80 +553,6 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
-    MonthlyReport: {
-      payload: Prisma.$MonthlyReportPayload<ExtArgs>
-      fields: Prisma.MonthlyReportFieldRefs
-      operations: {
-        findUnique: {
-          args: Prisma.MonthlyReportFindUniqueArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$MonthlyReportPayload> | null
-        }
-        findUniqueOrThrow: {
-          args: Prisma.MonthlyReportFindUniqueOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$MonthlyReportPayload>
-        }
-        findFirst: {
-          args: Prisma.MonthlyReportFindFirstArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$MonthlyReportPayload> | null
-        }
-        findFirstOrThrow: {
-          args: Prisma.MonthlyReportFindFirstOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$MonthlyReportPayload>
-        }
-        findMany: {
-          args: Prisma.MonthlyReportFindManyArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$MonthlyReportPayload>[]
-        }
-        create: {
-          args: Prisma.MonthlyReportCreateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$MonthlyReportPayload>
-        }
-        createMany: {
-          args: Prisma.MonthlyReportCreateManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        createManyAndReturn: {
-          args: Prisma.MonthlyReportCreateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$MonthlyReportPayload>[]
-        }
-        delete: {
-          args: Prisma.MonthlyReportDeleteArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$MonthlyReportPayload>
-        }
-        update: {
-          args: Prisma.MonthlyReportUpdateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$MonthlyReportPayload>
-        }
-        deleteMany: {
-          args: Prisma.MonthlyReportDeleteManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        updateMany: {
-          args: Prisma.MonthlyReportUpdateManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        updateManyAndReturn: {
-          args: Prisma.MonthlyReportUpdateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$MonthlyReportPayload>[]
-        }
-        upsert: {
-          args: Prisma.MonthlyReportUpsertArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$MonthlyReportPayload>
-        }
-        aggregate: {
-          args: Prisma.MonthlyReportAggregateArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.AggregateMonthlyReport>
-        }
-        groupBy: {
-          args: Prisma.MonthlyReportGroupByArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.MonthlyReportGroupByOutputType>[]
-        }
-        count: {
-          args: Prisma.MonthlyReportCountArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.MonthlyReportCountAggregateOutputType> | number
-        }
-      }
-    }
   }
 } & {
   other: {
@@ -687,18 +612,6 @@ export const WorkEntrieScalarFieldEnum = {
 } as const
 
 export type WorkEntrieScalarFieldEnum = (typeof WorkEntrieScalarFieldEnum)[keyof typeof WorkEntrieScalarFieldEnum]
-
-
-export const MonthlyReportScalarFieldEnum = {
-  id: 'id',
-  month: 'month',
-  year: 'year',
-  total_minutes: 'total_minutes',
-  total_earnings: 'total_earnings',
-  user_id: 'user_id'
-} as const
-
-export type MonthlyReportScalarFieldEnum = (typeof MonthlyReportScalarFieldEnum)[keyof typeof MonthlyReportScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -889,7 +802,6 @@ export type PrismaClientOptions = ({
 export type GlobalOmitConfig = {
   user?: Prisma.UserOmit
   workEntrie?: Prisma.WorkEntrieOmit
-  monthlyReport?: Prisma.MonthlyReportOmit
 }
 
 /* Types for Logging */

@@ -10,5 +10,4 @@
  */
 export type * from './models/User.js'
 export type * from './models/WorkEntrie.js'
-export type * from './models/MonthlyReport.js'
 export type * from './commonInputTypes.js'
