@@ -3,10 +3,9 @@ import type { Express } from 'express'
 import { describe, expect, it, beforeAll } from 'vitest'
 
 describe('Register (e2e)', () => {
-  let app: Express // criar o app como let
+  let app: Express
 
   beforeAll(async () => {
-    // realizar a importação no beforeAll
     app = (await import('@/app.js')).app
   })
   
